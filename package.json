@@ -1,0 +1,19 @@
+{
+  "name": "michatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taniagdn/MiChatbot.git"
+  },
+  "author": "Tania",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taniagdn/MiChatbot/issues"
+  },
+  "homepage": "https://github.com/taniagdn/MiChatbot#readme"
+}
