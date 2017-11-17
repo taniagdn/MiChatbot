@@ -318,8 +318,7 @@ function handleMessage(currentUser, senderID, message, isEcho, messageId, appId,
     }
   }
   else if (messageAttachments) {
-    //sendTextMessage(senderID, "Message with attachment received");
-    sendToBot(senderID, messageText);
+    sendTextMessage(senderID, "Message with attachment received");
   }
 }
 
