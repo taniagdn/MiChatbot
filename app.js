@@ -314,7 +314,8 @@ function handleMessage(currentUser, senderID, message, isEcho, messageId, appId,
       getUsername(senderID);
     }
     else {
-      sendToBot(senderID, messageText);
+      //sendTextMessage(senderID, messageText);
+	  sendToBot(senderID, messageText);
     }
   }
   else if (messageAttachments) {
@@ -323,46 +324,53 @@ function handleMessage(currentUser, senderID, message, isEcho, messageId, appId,
 }
 
 function sendToBot(senderID, message){
-  var request = bot.textRequest(message, {
-      sessionId: senderID
-  });
+	
+	var request = bot.textRequest(message, {
+    sessionId: senderID
+});
 
-  request.on('response', function(response) {
-      console.log(response);
-      if (response){
-        const result = response.result;
-        if (result){
-          const fulfillment = result.fulfillment;
-          if (fulfillment && fulfillment.spech && fulfillment.spech.length >0){
-          sendTextMessage(senderID, fulfillment.spech);
-          }
-          else{
-            const action = result.action;
-            const parameters = result.parameters;
-            console.log('action: ', action);
-            console.log('parameters: ', parameters);
-            switch (action) {
-              case 'account.balance':
-              sendTextMessage(senderID, 'get account balance');
-              break;
-              case 'account.movement':
-              sendTextMessage(senderID, 'get account movement');
-              break;
-              default:
-              console.log ('unknown action...');
-              break;
-            }
-          }
-        }
-      }
-  });
+request.on('response', function(response) {
+    console.log(response);
+	if(response){
+		const result = response.result;
+		if(result){
+			
+			const fulfillment = result.fulfillment;
+			if(fulfillment && fulfillment.speech && fulfillment.speech.length > 0){
+				sendTextMessage(senderID, fulfillment.speech);
+			}
+			else{
+				
+				const action = result.action;
+				const parameters = result.parameters;
+				console.log('action: ', action);
+				console.log('parameters: ', parameters);
+				switch(action){
+					case 'account.balance':
+					//aqui se deberia obrener el balance
+					sendTextMessage(senderID, 'get account balance');					
+					break;
+					case 'account.movement':
+					sendTextMessage(senderID, 'get account movement');
+					break;			
+					default:
+					console.log('unknown action...');
+					break;
+					
+				}
+				
+			}
+			
+		}
+	}
+});
 
+request.on('error', function(error) {
+    console.log(error);
+});
 
-  request.on('error', function(error) {
-      console.log(error);
-  });
-
-  request.end();
+request.end();
+	
 }
 
 
