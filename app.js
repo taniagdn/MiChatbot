@@ -338,10 +338,10 @@ function sendToBot(senderID, message){
           }
           else{
             const action = result.action;
-            const patameters = result.parameters;
+            const parameters = result.parameters;
             console.log('action: ', action);
-            console.log('patameters: ', parameters);
-            switch (action){
+            console.log('parameters: ', parameters);
+            switch (action) {
               case 'account.balance':
               sendTextMessage(senderID, 'get account balance');
               break;
